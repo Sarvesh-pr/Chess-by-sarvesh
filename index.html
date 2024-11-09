@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Sarvesh's Chess Game</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Inline styles for vibrant background and enhanced field focus effect */
+    body {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #ffd1ff, #d9a7c7, #fffcdc);
+      font-family: 'Trebuchet MS', sans-serif;
+      color: #333;
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Focus effects for form fields */
+    input[type="text"]:focus, input[type="number"]:focus, select:focus, input[type="radio"]:focus + label {
+      outline: none;
+      border: 2px solid #ff6b6b; /* Vibrant red border for focused inputs */
+      box-shadow: 0 0 10px rgba(255, 107, 107, 0.5); /* Red glow effect */
+    }
+
+    /* Highlight label for radio buttons when focused */
+    input[type="radio"]:focus + label {
+      color: #ff6b6b;
+      font-weight: bold;
+    }
+
+    /* Submit button red highlight effect on click */
+    #startButton:active {
+      background-color: #ff6b6b;
+      color: #fff;
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Welcome to Sarvesh's Chess Game</h1>
+    <p class="subtitle">Get ready for an exciting game of chess with Sarvesh and Ashish!</p>
+    
+    <div class="form-container">
+      <form id="loginForm">
+        <!-- Username Field -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        
+        <!-- Age Field -->
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" placeholder="Enter your age" required>
+        <p id="ageValidation" class="validation-message"></p>
+        
+        <!-- Favorite Chess Opening Dropdown -->
+        <label for="opening">Favorite Chess Opening:</label>
+        <select id="opening" name="opening">
+          <option value="Sicilian Defense">Sicilian Defense</option>
+          <option value="French Defense">French Defense</option>
+          <option value="Ruy Lopez">Ruy Lopez</option>
+          <option value="Queen's Gambit">Queen's Gambit</option>
+          <option value="King's Indian Defense">King's Indian Defense</option>
+        </select>
+        
+        <!-- Experience Level Radio Buttons -->
+        <label>Experience Level:</label>
+        <div>
+          <input type="radio" id="beginner" name="experience" value="Beginner" required>
+          <label for="beginner">Beginner</label>
+          
+          <input type="radio" id="intermediate" name="experience" value="Intermediate" required>
+          <label for="intermediate">Intermediate</label>
+          
+          <input type="radio" id="expert" name="experience" value="Expert" required>
+          <label for="expert">Expert</label>
+        </div>
+        
+        <!-- Preferred Chess Piece Color Dropdown -->
+        <label for="color">Preferred Chess Piece Color:</label>
+        <select id="color" name="color">
+          <option value="White">White</option>
+          <option value="Black">Black</option>
+        </select>
+        
+        <!-- Start Game Button -->
+        <button type="submit" id="startButton">Start Game</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const ageInput = document.getElementById("age");
+    const ageValidation = document.getElementById("ageValidation");
+    const loginForm = document.getElementById("loginForm");
+
+    // Age validation message
+    ageInput.addEventListener("input", () => {
+      if (ageInput.value < 7) {
+        ageValidation.textContent = "Minimum age to play is 7.";
+        ageValidation.style.color = "red";
+      } else {
+        ageValidation.textContent = "";
+      }
+    });
+
+    // Handle form submission
+    loginForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      const username = document.getElementById("username").value;
+      const age = document.getElementById("age").value;
+      const opening = document.getElementById("opening").value;
+      const experience = document.querySelector('input[name="experience"]:checked').value;
+      const color = document.getElementById("color").value;
+
+      if (username && age >= 7) {
+        // Store user info in localStorage
+        localStorage.setItem("username", username);
+        localStorage.setItem("age", age);
+        localStorage.setItem("opening", opening);
+        localStorage.setItem("experience", experience);
+        localStorage.setItem("color", color);
+
+        // Show welcome message and redirect to chess game page
+        alert(`Welcome, ${username}! You're set to play as ${color}.`);
+        window.location.href = "chess.html";
+      } else {
+        alert("Please enter a valid username and age (7 or older).");
+      }
+    });
+  </script>
+</body>
+</html>

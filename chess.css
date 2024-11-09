@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffd1ff, #d9a7c7, #fffcdc);
+    min-height: 100vh;
+    color: #333;
+  }
+  
+  h1 {
+    font-size: 2em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    color: #333;
+  }
+  
+  .game-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  #board {
+    display: grid;
+    grid-template-columns: repeat(8, 60px);
+    grid-template-rows: repeat(8, 60px);
+    gap: 2px;
+    border: 5px solid #8b5e3c;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: #deb887;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .cell {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .cell.white {
+    background-color: #f0d9b5;
+  }
+  
+  .cell.black {
+    background-color: #b58863;
+  }
+  
+  .cell.highlight-move {
+    background-color: #aaffaa; /* Green for legal empty moves */
+  }
+  
+  .cell.highlight-capture {
+    background-color: #ff6961; /* Red for opponent captures */
+  }
+  
+  .captured-pieces {
+    width: 100px;
+    min-height: 480px;
+    padding: 10px;
+    border: 2px solid #444;
+    background-color: #f3f3f3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+  }
+  
